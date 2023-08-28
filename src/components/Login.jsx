@@ -2,6 +2,7 @@ import React from "react";
 import "../styles/login.scss";
 import {Grid} from "@mui/material"
 import Login_Image from "../assests/Login_Image"
+import icon from "../assests/Login_header"
 const Login = () => {
 
     const handleSubmit = (e) => {
@@ -11,7 +12,9 @@ const Login = () => {
         <div>
           <Grid container>
      <Grid item xs={4} className="loginGrid"> 
-         <div>Login</div>
+        <div>
+         <img alt=" " src={icon}  />
+         </div>
          
      </Grid>
      <Grid item xs={6} className="imageGrid">
