@@ -9,19 +9,15 @@ const Login = () => {
     }
     return (
         <div>
-            <div class="container">
-                <div class="wrapper">
-                    <div class="box a">.a</div>
-                    <Grid container >
-                   
-                    <Grid item xs={8}>
-                    <Grid item container xs={4}>
-                    <img alt=" " src={Login_Image} />
-                    </Grid>
-  </Grid>
-                    </Grid>
-                </div>
-            </div>
+          <Grid container>
+     <Grid item xs={4} className="loginGrid"> 
+         <div>Login</div>
+         
+     </Grid>
+     <Grid item xs={6} className="imageGrid">
+         <img alt=" " src={Login_Image}  width="900" height="600"/>
+     </Grid>
+     </Grid>
         </div>
     );
 };
