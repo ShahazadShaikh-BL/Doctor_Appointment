@@ -1,0 +1,31 @@
+.myFont {
+font-size: large;
+font-family: 'Courier New', Courier, monospace;
+background-color: red;
+}
+
+.wrapper {
+    display: grid;
+    grid-template-columns: 33.667% 66.334%;	
+  }
+  
+  // demo & defaults
+  .box {
+          background-color: #444;
+          color: #fff;
+          padding: 1em;
+  }
+  
+  
+  .a {
+      background-color: purple;
+  }
+  .b {
+      background-color: blue;
+  }
+  body {
+      
+      background-color: light-grey;
+  }
+  
+  
