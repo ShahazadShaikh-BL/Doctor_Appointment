@@ -3,6 +3,7 @@ import "../styles/login.scss";
 import { Grid, Box, Typography, TextField, Switch, Label, Button, Link } from "@mui/material"
 import Login_Image from "../assests/Login_Image"
 import icon from "../assests/Login_header"
+import { grey } from "@mui/material/colors";
 const Login = () => {
 
     const handleSubmit = (e) => {
@@ -19,14 +20,13 @@ const Login = () => {
                             sx={{
                                 my: 8,
                                 mx: 4,
-                                display: "flex",
-                                flexDirection: "column",
-                                alignItems: "center",
+                                textAlign:"left"
+                             
                             }}
                         >
                             <div className="loginSignIn">
-                            <Typography component="h1" variant="h5" marginLeft="5px">
-                                Sign in
+                            <Typography component="h1" variant="h5" >
+                                <div  >Login Form</div>
                             </Typography>
                             <h8>Login to acces your account</h8>
                             </div>
@@ -76,12 +76,14 @@ const Login = () => {
                       Forgot password?
                     </Link>
                   </Grid>
+                  </Grid>
                   <Grid item>
                     <Link href="/" variant="body2">
-                      {"Don't have an account? Sign Up"}
+                    Don't have an account
+                      {"? Sign Up"}
                     </Link>
                   </Grid>
-                </Grid>
+              
                         </Box>
 
                     </div>
