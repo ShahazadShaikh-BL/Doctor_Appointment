@@ -1,14 +1,34 @@
-import React from "react";
+import React, {useState} from "react";
 import "../styles/login.scss";
 import { Grid, Box, Typography, TextField, Switch, Label, Button, Link } from "@mui/material"
 import Reg_Image from "../assests/Registeration_Image"
 import icon from "../assests/Login_header"
 import { grey } from "@mui/material/colors";
-const Registeration = () => {
 
-    const handleSubmit = (e) => {
-        console.log("Event Log...");
-    }
+import {
+    validPassword,
+    validEmail,
+  } from "./formValidation";
+const Registeration = () => {
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [nameError, setNameError] = useState(false);
+    const [emailError, setEmailError] = useState(false);
+    const [passwordError, setPasswordError] = useState(false);
+
+    const handleSubmit = (event) => {
+        console.log("Hello", event);
+        event.preventDefault();
+        const data = new FormData(event.currentTarget);
+        console.log("Data", event);
+        console.log({
+          email: data.get("email"),
+          password: data.get("password"),
+        });
+      };
+
+ 
     const label = { inputProps: { 'aria-label': 'Switch demo' } };
     return (
         <div>
@@ -41,26 +61,37 @@ const Registeration = () => {
                                     margin="normal"
                                     required
                                     fullWidth
-                                    id="name"
+                                    id="standard-error"
                                     label="Name"
                                     name="name"
                                     autoComplete="name"
                                     autoFocus
                                     variant="filled"
                                     size="small"
+                                    error={nameError}
+                                    helperText={nameError ? "Invalid Name" : ""}
+                                    onChange={e => setName(e.target.value)}
                                 />
                                 <TextField
                                     margin="normal"
                                     required
                                     fullWidth
-                                    id="email"
+                                    id="outlined-error"
                                     label="Email Address"
                                     name="email"
                                     autoComplete="email"
                                     autoFocus
                                     variant="filled"
                                     size="small"
+                                    error={emailError}
+                                    helperText={
+                                      emailError
+                                        ? "Invalid email"
+                                        : "You can use letters,numbers & periods"}
+                                    onChange={e => setEmail(e.target.value)}
+                                  
                                 />
+                                
                                 <TextField
                                     margin="normal"
                                     required
@@ -72,8 +103,17 @@ const Registeration = () => {
                                     autoComplete="current-password"
                                     variant="filled"
                                     size="small"
+                                    onChange={e => setPassword(e.target.value)} 
+                                    error={passwordError}
+                                    helperText={
+                                      passwordError
+                                        ? "Invalid password"
+                                        : "Use 8 or more characters with a mix of letters, numbers & symbols"
+                                    }
+                                  
                                 />
                                 <Switch {...label} defaultChecked />
+                              
                             </Box>
                             <Button
                                 type="submit"
