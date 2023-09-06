@@ -10,33 +10,42 @@ const Login = () => {
     const [password, setPassword] = useState("");
     const [emailError, setEmailError] = useState(false);
     const [passwordError, setPasswordError] = useState(false);
+    const [objData, setObjData]=useState([])
 
     const handleSubmit = (event) => {
         let errorFlag = false;
-      
-          event.preventDefault();
+
+        event.preventDefault();
         // console.log("Event Log...",e);  
         setEmailError(false);
         setPasswordError(false);
-        if (email === "") setEmailError(true);
-        if (password === "") setPasswordError(true);
 
-    
-          const data = new FormData(event.currentTarget);
-          console.log({
-              email: data.get("email"),
-              password: data.get("password"),
+        if (email === "") {
+            errorFlag = true;
+            setEmailError(true);
+        }
+        if (password === "") {
+            errorFlag = true;
+            setPasswordError(true);
+        }
+
+        if (errorFlag) {
+            alert("Login Error")
+        }
+        else {
+            alert("Login Sucess")
+           
+        }
+
+        const data = new FormData(event.currentTarget);
+        console.log({
+            email: data.get("email"),
+            password: data.get("password"),
             
-            });
-            if(data == "")
-            {
-                alert("PLs enter the Data")
-            }
-            else
-            {
-                alert("Login Sucess")
-            }
-        
+        });
+        setObjData(...data);
+     
+
 
     }
     const label = { inputProps: { 'aria-label': 'Switch demo' } };
@@ -50,15 +59,15 @@ const Login = () => {
                             sx={{
                                 my: 8,
                                 mx: 4,
-                                textAlign:"left"
-                             
+                                textAlign: "left"
+
                             }}
                         >
                             <div className="loginSignIn">
-                            <Typography component="h1" variant="h5" >
-                                <div  >Login Form</div>
-                            </Typography>
-                            <h8>Login to acces your account</h8>
+                                <Typography component="h1" variant="h5" >
+                                    <div  >Login Form</div>
+                                </Typography>
+                                <h8>Login to acces your account</h8>
                             </div>
 
                             <Box
@@ -78,10 +87,11 @@ const Login = () => {
                                     autoFocus
                                     variant="filled"
                                     size="small"
+                                    onChange={(e) => setEmail(e.target.value)}
                                     error={emailError}
                                     helperText={emailError ? "Email cannot be empty" : ""}
                                 />
-                            
+
                                 <TextField
                                     margin="normal"
                                     required
@@ -93,33 +103,34 @@ const Login = () => {
                                     autoComplete="current-password"
                                     variant="filled"
                                     size="small"
+                                    onChange={(e) => setPassword(e.target.value)}
                                     error={passwordError}
                                     helperText={passwordError ? "Password cannot be empty" : ""}
                                 />
-                               {/* <Switch {...label} defaultChecked /> */}
-                           
-                            <Button
-                                type="submit"
-                              
-                                variant="contained"
-                                sx={{ mt: 3, mb: 2 }}
-                            >
-                                Sign In </Button>
-                                </Box>
-                                <Grid container>
-                  <Grid item xs>
-                    <Link href="#" variant="body2">
-                      Forgot password?
-                    </Link>
-                  </Grid>
-                  </Grid>
-                  <Grid item>
-                    <Link href="/" variant="body2">
-                    Don't have an account
-                      {"? Sign Up"}
-                    </Link>
-                  </Grid>
-              
+                                {/* <Switch {...label} defaultChecked /> */}
+
+                                <Button
+                                    type="submit"
+
+                                    variant="contained"
+                                    sx={{ mt: 3, mb: 2 }}
+                                >
+                                    Sign In </Button>
+                            </Box>
+                            <Grid container>
+                                <Grid item xs>
+                                    <Link href="#" variant="body2">
+                                        Forgot password?
+                                    </Link>
+                                </Grid>
+                            </Grid>
+                            <Grid item>
+                                <Link href="/" variant="body2">
+                                    Don't have an account
+                                    {"? Sign Up"}
+                                </Link>
+                            </Grid>
+
                         </Box>
 
                     </div>
@@ -130,7 +141,7 @@ const Login = () => {
                 </Grid>
             </Grid>
 
-           
+
         </div>
     );
 };
