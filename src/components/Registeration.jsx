@@ -6,26 +6,82 @@ import icon from "../assests/Login_header"
 import { grey } from "@mui/material/colors";
 
 import {
+    validFirstName,
     validPassword,
     validEmail,
-  } from "./formValidation";
+  } from "../config/formValidation";
 const Registeration = () => {
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    // const [name, setName] = useState('');
+    // const [email, setEmail] = useState("");
+    // const [password, setPassword] = useState("");
+    const initialUserState={
+        name:"",
+        email:"",
+        password:"",
+       
+      };
+      const[user, setUser]= useState(initialUserState);
     const [nameError, setNameError] = useState(false);
     const [emailError, setEmailError] = useState(false);
     const [passwordError, setPasswordError] = useState(false);
+    const [checked, setChecked] = React.useState(true);
+
+    const handleInputChange=(event)=> {
+        const {name, value}=event.target;
+        setUser({...user, [name]: value})
+        console.log(user);
+      }
+
+    const handleChange = (event) => {
+    
+        setChecked(event.target.checked);
+        console.log(event.target.checked);
+      };
 
     const handleSubmit = (event) => {
-      
+        let errorFlag = false;
         event.preventDefault();
-        const data = new FormData(event.currentTarget);
+        // const data = new FormData(event.currentTarget);
+        // console.log("Data", event);
+        // console.log({
+        //   email: data.get("email"),
+        //   password: data.get("password"),
+        //   name:data.get("name"),
+        //   checked:data.get("check")
+        // });
+        setNameError(false)
+        setEmailError(false)
+        setPasswordError(false)
+      
+        if(!validFirstName.test(user.name)) {
+            errorFlag=true
+            setNameError(true)
+          }
+          if(!validEmail.test(user.email)) {
+            errorFlag=true
+            setEmailError(true)
+          }
+          if(!validPassword.test(user.password)) {
+            errorFlag=true
+            setPasswordError(true)
+          }
+
+          if(errorFlag) {
+            alert("Enter the correct details");
+          }
+          else
+          {
+              const data = new FormData(event.currentTarget);
         console.log("Data", event);
         console.log({
           email: data.get("email"),
           password: data.get("password"),
+          name:data.get("name"),
+          check:data.get("check")
+           
         });
+        alert("Register  sucess");
+          }
       };
 
  
@@ -53,9 +109,9 @@ const Registeration = () => {
 
                             <Box
                                 component="form"
-                                // // noValidate
+                               
                                 onSubmit={handleSubmit}
-                                // sx={{ mt: 1 }}
+                                sx={{ mt: 1 }}
                             >
                                 <TextField
                                     margin="normal"
@@ -70,9 +126,11 @@ const Registeration = () => {
                                     size="small"
                                     error={nameError}
                                     helperText={nameError ? "Invalid Name" : ""}
-                                    onChange={e => setName(e.target.value)}
+                                    // onChange={e => setName(e.target.value)}
+                                    onChange={handleInputChange}
                                     
                                 />
+                                {nameError}
                                 
                                 <TextField
                                     margin="normal"
@@ -90,7 +148,8 @@ const Registeration = () => {
                                       emailError
                                         ? "Invalid email"
                                         : "You can use letters,numbers & periods"}
-                                    onChange={e => setEmail(e.target.value)}
+                                    // onChange={e => setEmail(e.target.value)}
+                                    onChange={handleInputChange}
                                   
                                 />
                                 
@@ -105,16 +164,18 @@ const Registeration = () => {
                                     autoComplete="current-password"
                                     variant="filled"
                                     size="small"
-                                    onChange={e => setPassword(e.target.value)} 
+                                    // onChange={e => setPassword(e.target.value)} 
+                                    onChange={handleInputChange}
                                     error={passwordError}
                                     helperText={
                                       passwordError
                                         ? "Invalid password"
                                         : "Use 8 or more characters with a mix of letters, numbers & symbols"
                                     }
+                                 
                                   
                                 />
-                                <Switch {...label} defaultChecked />
+                                <Switch  name="check"  onChange={handleInputChange} label="Required" required  defaultChecked />
                               
                             
                             <Button

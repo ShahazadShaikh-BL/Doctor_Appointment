@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "../styles/login.scss";
 import { Grid, Box, Typography, TextField, Switch, Label, Button, Link } from "@mui/material"
 import Login_Image from "../assests/Login_Image"
@@ -6,8 +6,38 @@ import icon from "../assests/Login_header"
 import { grey } from "@mui/material/colors";
 const Login = () => {
 
-    const handleSubmit = (e) => {
-        console.log("Event Log...");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [emailError, setEmailError] = useState(false);
+    const [passwordError, setPasswordError] = useState(false);
+
+    const handleSubmit = (event) => {
+        let errorFlag = false;
+      
+          event.preventDefault();
+        // console.log("Event Log...",e);  
+        setEmailError(false);
+        setPasswordError(false);
+        if (email === "") setEmailError(true);
+        if (password === "") setPasswordError(true);
+
+    
+          const data = new FormData(event.currentTarget);
+          console.log({
+              email: data.get("email"),
+              password: data.get("password"),
+            
+            });
+            if(data == "")
+            {
+                alert("PLs enter the Data")
+            }
+            else
+            {
+                alert("Login Sucess")
+            }
+        
+
     }
     const label = { inputProps: { 'aria-label': 'Switch demo' } };
     return (
@@ -48,7 +78,10 @@ const Login = () => {
                                     autoFocus
                                     variant="filled"
                                     size="small"
+                                    error={emailError}
+                                    helperText={emailError ? "Email cannot be empty" : ""}
                                 />
+                            
                                 <TextField
                                     margin="normal"
                                     required
@@ -60,9 +93,11 @@ const Login = () => {
                                     autoComplete="current-password"
                                     variant="filled"
                                     size="small"
+                                    error={passwordError}
+                                    helperText={passwordError ? "Password cannot be empty" : ""}
                                 />
-                               <Switch {...label} defaultChecked />
-                            </Box>
+                               {/* <Switch {...label} defaultChecked /> */}
+                           
                             <Button
                                 type="submit"
                               
@@ -70,6 +105,7 @@ const Login = () => {
                                 sx={{ mt: 3, mb: 2 }}
                             >
                                 Sign In </Button>
+                                </Box>
                                 <Grid container>
                   <Grid item xs>
                     <Link href="#" variant="body2">
@@ -93,6 +129,8 @@ const Login = () => {
                     <img alt=" " src={Login_Image} width="900" height="600" />
                 </Grid>
             </Grid>
+
+           
         </div>
     );
 };
