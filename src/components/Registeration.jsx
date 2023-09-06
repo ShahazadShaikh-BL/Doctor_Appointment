@@ -18,7 +18,7 @@ const Registeration = () => {
     const [passwordError, setPasswordError] = useState(false);
 
     const handleSubmit = (event) => {
-        console.log("Hello", event);
+      
         event.preventDefault();
         const data = new FormData(event.currentTarget);
         console.log("Data", event);
@@ -53,9 +53,9 @@ const Registeration = () => {
 
                             <Box
                                 component="form"
-                                noValidate
+                                // // noValidate
                                 onSubmit={handleSubmit}
-                                sx={{ mt: 1 }}
+                                // sx={{ mt: 1 }}
                             >
                                 <TextField
                                     margin="normal"
@@ -71,7 +71,9 @@ const Registeration = () => {
                                     error={nameError}
                                     helperText={nameError ? "Invalid Name" : ""}
                                     onChange={e => setName(e.target.value)}
+                                    
                                 />
+                                
                                 <TextField
                                     margin="normal"
                                     required
@@ -114,17 +116,18 @@ const Registeration = () => {
                                 />
                                 <Switch {...label} defaultChecked />
                               
-                            </Box>
+                            
                             <Button
                                 type="submit"
-
+                               
                                 variant="contained"
                                 sx={{ mt: 3, mb: 2 }}
                             >
                                 Register </Button>
+                                </Box>
 
                             <Grid item>
-                                <Link href="/" variant="body2">
+                                <Link href="/login" variant="body2">
                                     Have an Account
                                     {"? Sign in"}
                                 </Link>
