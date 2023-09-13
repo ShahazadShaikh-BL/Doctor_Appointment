@@ -1,17 +1,20 @@
+import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
+
 import "../styles/login.scss";
 import { Grid, Box, Typography, TextField, Switch, Label, Button, Link } from "@mui/material"
 import Login_Image from "../assests/Login_Image"
 import icon from "../assests/Login_header"
 import { grey } from "@mui/material/colors";
-const Login = () => {
 
+//const navigate = useNavigate();
+const Login = () => {
+    const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [emailError, setEmailError] = useState(false);
     const [passwordError, setPasswordError] = useState(false);
-    const [objData, setObjData]=useState([])
-
+   
     const handleSubmit = (event) => {
         let errorFlag = false;
 
@@ -29,23 +32,33 @@ const Login = () => {
             setPasswordError(true);
         }
 
-        if (errorFlag) {
-            alert("Login Error")
-        }
-        else {
-            alert("Login Sucess")
+        // if (errorFlag) {
+        //     alert("Login Error")
+        // }
+        // else {
+        //     alert("Login Sucess")
            
-        }
-
+        // }
+      
         const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get("email"),
-            password: data.get("password"),
+        var emailLogin=localStorage.getItem("email")
+        var passLogin=localStorage.getItem("password")
+        console.log("My Pass from Reg", passLogin);
+        if(data.get("email")==emailLogin && data.get("password")==passLogin)
+        {
+            navigate("/dashboard");
+        }
+        else
+        {
+            alert("Password and email is not p")
+        }
+       
+      
+        // console.log({
+        //     email: data.get("email"),
+        //     password: data.get("password"),
             
-        });
-        setObjData(...data);
-     
-
+        // });
 
     }
     const label = { inputProps: { 'aria-label': 'Switch demo' } };

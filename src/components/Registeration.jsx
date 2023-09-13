@@ -80,6 +80,8 @@ const Registeration = () => {
           check:data.get("check")
            
         });
+        localStorage.setItem("email" , data.get("email"))
+        localStorage.setItem("password", data.get("password"))
         alert("Register  sucess");
           }
       };
