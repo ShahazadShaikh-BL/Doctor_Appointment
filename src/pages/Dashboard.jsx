@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import Appbar from '../components/Appbar';
+import { Box } from "@mui/material";
 
 function Dashboard() {
     const [isLoading, setLoading] = useState(true);
@@ -7,7 +9,7 @@ function Dashboard() {
 
     const getFetchUsers = () => {
         setLoading(true);
-        fetch("http://localhost:3000/posts")
+        fetch("http://localhost:3003/posts")
             .then(res => res.json())
             .then(result => {
                 setUsers(result);
@@ -25,10 +27,11 @@ function Dashboard() {
     }, []); // Empty dependency array ensures this effect runs once on mount
 
     return (
-        <React.Fragment>
-            <h1>All User</h1>
-            {error ? <p>{error.message}</p> : null}
-            {users.map(user => {
+        <Box >
+        <Appbar />
+        <h1>All User</h1>
+             {error ? <p>{error.message}</p> : null}
+             {users.map(user => {
                 const { address, name, email } = user;
                 return (
                     <div key={name}>
@@ -39,7 +42,10 @@ function Dashboard() {
                     </div>
                 );
             })}
-        </React.Fragment>
+      </Box>
+        //
+        //     
+        // </React.Fragment>
     );
 }
 
