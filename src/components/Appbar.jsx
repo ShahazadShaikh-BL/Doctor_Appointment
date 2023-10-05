@@ -31,6 +31,7 @@ const AppBar = styled(MuiAppBar, {
 const Appbar = ({ handleDrawerOpen,handleSearch,title }) => {
   return (
     <AppBar position="fixed">
+       
       <Toolbar style={{ color: "rgba(0, 0, 0, 0.54)" }}>
         <IconButton
           color="inherit"
@@ -45,7 +46,7 @@ const Appbar = ({ handleDrawerOpen,handleSearch,title }) => {
         </IconButton>
         <img src={doctorImage} alt="" style={{width: "2em", height: "2.5em" }} />
         <Typography variant="h6" noWrap style={{ fontWeight: "bold", marginLeft: "10px" }} component="div">
-         Dr. Shaikh
+         {title}
         </Typography>
         <TextField
           placeholder="Search…"
