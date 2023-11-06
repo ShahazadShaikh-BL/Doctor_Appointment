@@ -2,23 +2,27 @@
     "posts": [{
         "id": 1,
         "name": "Satheesh",
-        "email": "Sat@mail.com",
-        "adderss": "South street"
+        "specialist": "Gynecologist",
+        "address": "05, Bharat Vijay Soc, Nashik Road",
+        "portfolioImage":"../../assests/image.png"
     }, {
         "id": 2,
         "name": "John",
-        "email": "john@mail.com",
-        "adderss": "North street"
+        "specialist": "Dentist",
+        "address": "05, Bharat Vijay Soc, Nashik Road",
+        "portfolioImage":"../assests/image.png"
     }, {
         "id": 3,
         "name": "Robert",
-        "email": "robert@mail.com",
-        "adderss": "East street"
+        "specialist": "Nursing",
+        "address": "05, Bharat Vijay Soc, Nashik Road",
+        "portfolioImage":"../assests/image.png"
     }, {
         "id": 4,
         "name": "Mani",
-        "email": "mani@mail.com",
-        "adderss": "West street"
+        "specialist": "Kidney",
+        "address": "05, Bharat Vijay Soc, Nashik Road",
+        "portfolioImage":"../assests/image.png"
     }],
     "comments": [{
         "id": 1,
